@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - huggingface:/home/appuser/.cache/huggingface
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate --grace-period 1s run --token ${TUNNEL_TOKEN}
+    restart: unless-stopped
+    network_mode: service:app
+
+volumes:
+  huggingface:
+    driver: local
