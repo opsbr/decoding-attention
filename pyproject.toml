@@ -21,9 +21,8 @@ explicit = true
 torch = [{ index = "pytorch-cpu" }]
 
 [dependency-groups]
-dev = [
-    "taskipy>=1.14.1",
-]
+dev = ["taskipy>=1.14.1"]
 [tool.taskipy.tasks]
 dev = "streamlit run main.py --server.headless=true --server.runOnSave=true"
+start = "streamlit run main.py"
 deploy = "docker compose up --build -d"

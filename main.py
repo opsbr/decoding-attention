@@ -18,7 +18,7 @@ st.set_page_config(
 )
 
 st.title(":blue[_**Decoding Attention**_]")
-st.logo("attention.png", size="large")
+st.logo("logo.png", size="large")
 
 
 def readme_page():
