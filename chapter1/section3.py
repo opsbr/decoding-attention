@@ -28,12 +28,10 @@ def section3(logits, temperature, top_k, min_p, top_p):
     # The warpers expect a batch of scores, so we use a batch of size = 1.
     # unsqueeze(0) is the same as [last_logits] but happens within PyTorch's tensor.
     scores = last_logits.unsqueeze(0)
-    # The warpers expect input_ids but a dummy input is fine since we don't use it.
-    input_ids_dummy = torch.tensor([[0]])
 
     # Apply each warper
     for warper in warpers:
-        scores = warper(input_ids_dummy, scores)
+        scores = warper(torch.LongTensor(), scores)
 
     # Finally normalize scores to get probabilities of the next token
     # We only need the first batch element since we used a batch size of 1.
@@ -96,44 +94,54 @@ We use [Hugging Face's built-in logits warpers](https://huggingface.co/docs/tran
     )
 
     # Tabbed interface for warper explanations
-    tab1, tab2, tab3, tab4 = st.tabs(["🌡️ Temperature", "🔢 Top-K", "📊 Min-P", "🎯 Top-P"])
-    
+    tab1, tab2, tab3, tab4 = st.tabs(
+        ["🌡️ Temperature", "🔢 Top-K", "📊 Min-P", "🎯 Top-P"]
+    )
+
     with tab1:
         with st.container(border=True):
-            st.markdown("""
+            st.markdown(
+                """
             **Temperature Scaling** adjusts the sharpness of the distribution by a "temperature" parameter:
             - `temperature < 1.0`: More chances for higher logit tokens (sharper distribution)
                 - Note: `~0.0` activates the highest logit token only (greedy)
             - `temperature = 1.0`: No scaling (original distribution)
             - `temperature > 1.0`: More chances for lower logit tokens (flatter distribution)
-            """)
-    
+            """
+            )
+
     with tab2:
         with st.container(border=True):
-            st.markdown("""
+            st.markdown(
+                """
             **Top-K Filtering** limits the number of tokens to consider:
             - Sort the logits in descending order and keep only the top K tokens
             - All other tokens get zero probability (filtered out)
             - Prevents sampling from very low-probability tokens
-            """)
-    
+            """
+            )
+
     with tab3:
         with st.container(border=True):
-            st.markdown("""
+            st.markdown(
+                """
             **Min-P Filtering** filters out tokens below a relative probability threshold:
             - `min_p = 0.0`: No filtering (all tokens considered)
             - `min_p > 0.0`: Filters out tokens with probabilities lower than `min_p × max(probabilities)`
             - Dynamically adjusts based on the highest probability token
-            """)
-    
+            """
+            )
+
     with tab4:
         with st.container(border=True):
-            st.markdown("""
+            st.markdown(
+                """
             **Top-P Filtering (Nucleus Sampling)** limits tokens to a cumulative probability mass:
             - `top_p = 1.0`: No filtering (all tokens considered)
             - `top_p < 1.0`: Keeps only tokens that make up the top `top_p` cumulative probability
             - Note: Internally calculates probabilities from logits first, then filters
-            """)
+            """
+            )
 
     st.markdown(
         """
@@ -174,10 +182,12 @@ Finally, we visualize the probability distribution of the next token. The x-axis
     # Summary and Progress
     with st.container(border=True):
         st.markdown("**📚 Section Summary**")
-        st.markdown("Logits are transformed into probability distributions using sampling filters (temperature, top-k, min-p, top-p) and softmax normalization. This creates a proper probability distribution for stochastic sampling.")
-        
+        st.markdown(
+            "Logits are transformed into probability distributions using sampling filters (temperature, top-k, min-p, top-p) and softmax normalization. This creates a proper probability distribution for stochastic sampling."
+        )
+
         # Progress indicator
-        st.progress(3/5, text="Step 3/5: Probability Distribution ✅")
+        st.progress(3 / 5, text="Step 3/5: Probability Distribution ✅")
 
     st.divider()
 

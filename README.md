@@ -56,11 +56,15 @@ uv run task start
 - How to sample the next token from probabilities?
 - How does autoregressive generation create new text?
 
-#### 💎 Chapter 2 — **Embedding** 🚧 *Coming Soon*
+#### 🔢 Chapter 2 — **Embedding & Linear** ✅ *Available Now*
+
+![](https://raw.githubusercontent.com/opsbr/decoding-attention/main/chapter2/overview.png)
 
 - What are embeddings and why are they important?
-- How to convert tokens to embedding vectors?
-- How to convert embedding vectors back to token logits?
+- How to convert tokens to embedding vectors using the embedding layer?
+- What is a linear layer and how does it work?
+- How to convert embedding vectors back to token logits using the linear layer?
+- How to combine embedding and linear layers for next token prediction?
 
 #### 🧠 Chapter 3 — **Neural Networks** 🚧 *Coming Soon*
 

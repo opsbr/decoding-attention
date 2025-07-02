@@ -38,6 +38,11 @@ pages = {
             title="Chapter 1: Tokenization & Sampling",
             icon="📚",
         ),
+        st.Page(
+            "./chapter2/chapter2.py",
+            title="Chapter 2: Embedding & Linear",
+            icon="🔢",
+        ),
     ]
 }
 
