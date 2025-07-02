@@ -1,18 +1,9 @@
 import inspect
 import streamlit as st
 import pandas as pd  # type: ignore
+import cache
 from transformers import AutoTokenizer
 from annotated_text import annotated_text  # type: ignore
-
-
-# Trick to cache
-@st.cache_resource
-def from_pretrained(model_name):
-    return original_from_pretrained(model_name)
-
-
-original_from_pretrained = AutoTokenizer.from_pretrained
-AutoTokenizer.from_pretrained = from_pretrained  # type: ignore
 
 
 def section1(model_name, input_text):
@@ -97,10 +88,12 @@ len(tokens) = {len(tokens)}
     # Summary and Progress
     with st.container(border=True):
         st.markdown("**📚 Section Summary**")
-        st.markdown("Tokenization converts text into numerical tokens using Byte Pair Encoding (BPE). Each token represents a subword unit, enabling efficient text processing by Transformers.")
-        
+        st.markdown(
+            "Tokenization converts text into numerical tokens using Byte Pair Encoding (BPE). Each token represents a subword unit, enabling efficient text processing by Transformers."
+        )
+
         # Progress indicator
-        st.progress(1/5, text="Step 1/5: Tokenization ✅")
+        st.progress(1 / 5, text="Step 1/5: Tokenization ✅")
 
     st.divider()
 

@@ -4,17 +4,8 @@ import torch
 from transformers import AutoModelForCausalLM
 import pandas as pd  # type: ignore
 import altair as alt
+import cache
 from section1 import decode_token
-
-
-# Trick to cache
-@st.cache_resource
-def from_pretrained(model_name):
-    return original_from_pretrained(model_name)
-
-
-original_from_pretrained = AutoModelForCausalLM.from_pretrained
-AutoModelForCausalLM.from_pretrained = from_pretrained  # type: ignore
 
 
 def section2(model_name, tokens):
@@ -89,10 +80,12 @@ In the next two sections, we'll see how to use these logits to predict the next 
     # Summary and Progress
     with st.container(border=True):
         st.markdown("**📚 Section Summary**")
-        st.markdown("Transformer models output logits - raw prediction scores for each vocabulary token at each position. These logits represent the model's confidence for potential next tokens.")
-        
+        st.markdown(
+            "Transformer models output logits - raw prediction scores for each vocabulary token at each position. These logits represent the model's confidence for potential next tokens."
+        )
+
         # Progress indicator
-        st.progress(2/5, text="Step 2/5: Logits Generation ✅")
+        st.progress(2 / 5, text="Step 2/5: Logits Generation ✅")
 
     st.divider()
 

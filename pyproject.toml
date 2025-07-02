@@ -9,7 +9,6 @@ dependencies = [
     "st-annotated-text>=4.0.2",
     "streamlit>=1.45.1",
     "torch>=2.7.0",
-    "torchtune>=0.6.1",
     "transformers>=4.52.3",
 ]
 
@@ -23,6 +22,6 @@ torch = [{ index = "pytorch-cpu" }]
 [dependency-groups]
 dev = ["taskipy>=1.14.1"]
 [tool.taskipy.tasks]
-dev = "streamlit run main.py --server.headless=true --server.runOnSave=true"
-start = "streamlit run main.py"
+dev = "exec streamlit run main.py --server.headless=true --server.runOnSave=true"
+start = "exec streamlit run main.py"
 deploy = "docker compose up --build -d"
