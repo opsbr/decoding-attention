@@ -50,7 +50,7 @@ st.markdown(
 )
 
 # Display overview image
-st.image("chapter1/overview.png", use_container_width=True)
+st.image("chapter1/overview.png", width="stretch")
 
 st.markdown(
     """
@@ -90,7 +90,7 @@ st.markdown(
 )
 
 # Display overview image again at conclusion
-st.image("chapter1/overview.png", use_container_width=True)
+st.image("chapter1/overview.png", width="stretch")
 
 st.markdown(
     """

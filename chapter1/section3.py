@@ -177,7 +177,7 @@ Finally, we visualize the probability distribution of the next token. The x-axis
 """
     )
     chart = create_probability_visualization(logits, probabilities, tokenizer, viz_k=10)
-    st.altair_chart(chart, use_container_width=True)
+    st.altair_chart(chart, width="stretch")
 
     # Summary and Progress
     with st.container(border=True):

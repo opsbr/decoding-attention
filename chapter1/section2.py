@@ -210,4 +210,4 @@ def create_logits_heatmap(outputs, tokenizer, tokens):
         .configure_title(fontSize=14, offset=10)
     )
 
-    st.altair_chart(chart, use_container_width=True)
+    st.altair_chart(chart, width="stretch")

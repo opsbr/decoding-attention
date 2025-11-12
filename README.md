@@ -24,7 +24,6 @@ between a keystroke and the next predicted token.
 ##### Run
 
 ```
-uv python install 3.12
 uv sync
 uv run task start
 ```

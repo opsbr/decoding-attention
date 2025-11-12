@@ -254,7 +254,7 @@ def create_vocabulary_overview(tokenizer):
 
     st.dataframe(
         styled_df,
-        use_container_width=True,
+        width="stretch",
         hide_index=True,
         height=200,
         column_config={

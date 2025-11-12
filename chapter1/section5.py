@@ -64,7 +64,7 @@ You'll see the original tokens at the top followed by the next token probabiliti
         chart = create_probability_visualization(
             logits, probabilities, tokenizer, viz_k, sampled_token
         )
-        st.altair_chart(chart, use_container_width=True)
+        st.altair_chart(chart, width="stretch")
 
         # New tokens after sampling
         with st.container(border=True, height=150):
@@ -95,9 +95,11 @@ You'll see the original tokens at the top followed by the next token probabiliti
     # Summary and Progress
     with st.container(border=True):
         st.markdown("**📚 Section Summary**")
-        st.markdown("Autoregressive generation repeats the entire process by feeding generated tokens back into the model. This creates sequential text generation where each new token depends on all previous tokens.")
-        
+        st.markdown(
+            "Autoregressive generation repeats the entire process by feeding generated tokens back into the model. This creates sequential text generation where each new token depends on all previous tokens."
+        )
+
         # Progress indicator
-        st.progress(5/5, text="Step 5/5: Autoregressive Generation ✅")
+        st.progress(5 / 5, text="Step 5/5: Autoregressive Generation ✅")
 
     st.divider()

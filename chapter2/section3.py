@@ -93,7 +93,7 @@ Embedding vectors can be visualized in a 2D space using dimensionality reduction
 """
     )
     fig = create_embedding_clusters(embedding, tokenize)
-    st.altair_chart(fig, use_container_width=True)
+    st.altair_chart(fig, width="stretch")
 
     with st.expander("_What is dimensionality reduction techniques?_"):
         st.markdown(

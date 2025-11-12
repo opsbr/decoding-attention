@@ -93,9 +93,9 @@ Lastly, we sample the next token from the logits using the `sample()` function. 
         st.markdown(
             "We reviewed the Chapter 1 pipeline: tokenization converts text to token IDs, the model generates logits, and sampling produces the next token for autoregressive generation."
         )
-        
+
         # Progress indicator
-        st.progress(1/5, text="Step 1/5: Recap Chapter 1 ✅")
+        st.progress(1 / 5, text="Step 1/5: Recap Chapter 1 ✅")
 
     st.divider()
 
@@ -165,7 +165,7 @@ def create_tokens_matrix_table(tokens, decode):
     )
 
     chart = (rectangles + text).properties(width=160, height=65)
-    st.altair_chart(chart, use_container_width=False)
+    st.altair_chart(chart, width="content")
 
 
 def create_tokens_with_next_matrix_table(tokens, next_token, decode):
@@ -288,7 +288,7 @@ def create_tokens_with_next_matrix_table(tokens, next_token, decode):
     )
 
     chart = (rectangles + text).properties(width=width, height=65)
-    st.altair_chart(chart, use_container_width=False)
+    st.altair_chart(chart, width="content")
 
 
 def create_logits_matrix_table(logits, vocab_size_limit=10):
@@ -432,4 +432,4 @@ def create_logits_matrix_table(logits, vocab_size_limit=10):
         )
     )
 
-    st.altair_chart(chart + text_chart, use_container_width=False)
+    st.altair_chart(chart + text_chart, width="content")
